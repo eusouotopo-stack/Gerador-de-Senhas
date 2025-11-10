@@ -1,62 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ferramentas - Gerador de Senhas Seguro</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ferramentas - Gerador de Senhas</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header"><h1>Ferramentas Gratuitas</h1></header>
-  <nav class="nav">
+<header class="header"><h1>Gerador de Senhas Seguro</h1></header>
+<nav class="nav">
     <a href="index.html">Início</a>
     <a href="app.html">Ferramentas</a>
     <a href="servicos.html">Serviços</a>
     <a href="blog.html">Blog</a>
     <a href="contato.html">Contato</a>
     <a href="privacidade.html">Privacidade</a>
-  </nav>
+</nav>
 
 <main class="container">
-  <section class="card">
+<section class="card">
     <h2>Gerador de Senhas</h2>
-    <p>Use esta ferramenta para gerar senhas fortes. Defina o tamanho e clique em “Gerar Senha”. Nosso gerador usa um conjunto robusto de caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos, garantindo alta entropia por senha gerada.</p>
-
-    <div style="display:flex; gap:12px; align-items:center; margin:10px 0;">
-      <label for="length" class="small">Tamanho:</label>
-      <input id="length" type="number" value="12" min="4" max="128" style="padding:8px;border-radius:6px;border:1px solid #ddd;width:90px;">
-      <button class="btn" onclick="gerarSenha()">Gerar Senha</button>
-    </div>
-
-    <pre class="pre" id="senhaOut" style="min-height:44px;"></pre>
-
-    <p class="small">Nenhum dado é enviado ao servidor. A senha é gerada no navegador — isso significa que o processo é local e temporário. Se deseja salvar a senha com segurança, use um gerenciador de senhas confiável.</p>
-
-    <div class="ad-banner">[Banner de Anúncios]</div>
-
-    <h3>Boas práticas</h3>
-    <ul>
-      <li>Use senhas únicas por serviço; nunca repita a mesma senha entre sites.</li>
-      <li>Prefira combinações longas e aleatórias; 12–16 caracteres é um bom começo.</li>
-      <li>Considere usar um gerenciador de senhas para armazenar credenciais de forma segura.</li>
-      <li>Ative autenticação de dois fatores (2FA) sempre que disponível.</li>
-    </ul>
-
-    <p>Se você administra sistemas ou serviços, considere políticas de rotação de credenciais e auditoria. Senhas fortes são só uma parte do ecossistema: monitoramento, backups e educação de usuários também são críticos.</p>
-  </section>
-
-  <section class="card">
-    <h2>Outras Ferramentas Planejadas</h2>
-    <p>Nosso roadmap inclui: conversor de moedas, gerador de PDFs simples, planejadores de estudo, e utilitários de produtividade. Cada ferramenta será implementada para rodar localmente em navegador, minimizar necessidade de dados e proteger a privacidade do usuário.</p>
-    <p>Se quiser sugerir uma ferramenta, escreva para <a href="mailto:vofs.auto@gmail.com">vofs.auto@gmail.com</a>.</p>
-  </section>
+    <label>Tamanho da senha:</label>
+    <input type="number" id="tamanho" value="12" min="4" max="32">
+    <button class="btn" onclick="gerarSenha()">Gerar Senha</button>
+    <p>Sua senha: <strong id="senha"></strong></p>
+</section>
 </main>
 
+<script>
+function gerarSenha() {
+    const tamanho = parseInt(document.getElementById('tamanho').value);
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:',.<>?";
+    let senha = "";
+    for(let i=0;i<tamanho;i++){
+        senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+    document.getElementById('senha').innerText = senha;
+}
+</script>
+
 <div class="cookie" id="cookieBox" style="display:none;">
-  <div style="flex:1;">Este site usa cookies para melhorar a sua experiência. Consulte <a href="privacidade.html">Política de Privacidade</a>.</div>
-  <div><button class="btn" onclick="acceptCookies()">Aceitar</button></div>
+    <div style="flex:1;font-size:14px;">Este site usa cookies. Leia nossa <a href="privacidade.html">Política de Privacidade</a>.</div>
+    <div><button class="btn" onclick="acceptCookies()">Aceitar</button></div>
 </div>
 
-<footer><div class="container small">© 2025 Victor Octavio — Serviços sem cadastro.</div></footer>
 <script src="main.js"></script>
+<footer>© 2025 Victor Octavio</footer>
 </body>
-        </html>
+</html>
